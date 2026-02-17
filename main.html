@@ -22,35 +22,15 @@
     <site-navbar></site-navbar>
 
     <!-- Main content goes here -->
-    <!-- This is the welcome on the landing page, with a login/signup button -->
-    <div class="container">
-      <div class="px-4 py-5 my-5 text-center">
-        <img
-          class="d-block mx-auto mb-4"
-          src="/images/image.jpg"
-          alt=""
-          width="72"
-          height="57"
-        />
-        <h1 class="display-5 fw-bold">
-          Welcome to Resolocal, <span id="name-goes-here">my friend!</span>
+    <div class="container-fluid bg-light text-dark p-5">
+      <div class="container bg-light p-5">
+        <h1 class="display-4">
+          Good morning <span id="name-goes-here">friend </span>
         </h1>
-        <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">
-            Join a community of hikers looking for new places to explore.
-          </p>
-          <h2>The view is better, together.</h2>
-          <div class="d-grid justify-content-sm-center">
-            <!-- Make this button clickable, using onclick event listener -->
-            <button
-              onclick="window.location.href = 'login.html'"
-              type="button"
-              class="btn btn-info btn-lg"
-            >
-              Login/Signup
-            </button>
-          </div>
-        </div>
+        <hr />
+        <p>
+          Quote of the day: A mind needs books like a sword needs a whetstone.
+        </p>
       </div>
     </div>
 
@@ -60,6 +40,7 @@
     <!---------------------------------------------->
     <!-- Your own JavaScript scripts go here      -->
     <!---------------------------------------------->
+
     <script type="module" src="/src/app.js"></script>
   </body>
 </html>
