@@ -31,3 +31,24 @@ async function displayHikeInfo() {
 }
 
 displayHikeInfo();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const writeReviewBtn = document.getElementById("writeReviewBtn");
+  writeReviewBtn.addEventListener("click", saveHikeDocumentIDAndRedirect);
+});
+
+function saveHikeDocumentIDAndRedirect() {
+  const params = new URL(window.location.href);
+  const hikeID = params.searchParams.get("docID");
+
+  if (!hikeID) {
+    console.warn("No hike ID found in URL. Cannot continue.");
+    return;
+  }
+
+  // Save the hike ID locally;  provide the key, and the value
+  localStorage.setItem("hikeDocID", hikeID);
+
+  // Redirect to the review page
+  window.location.href = "review.html";
+}
