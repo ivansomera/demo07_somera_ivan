@@ -1,10 +1,16 @@
+import { onAuthReady } from "./authentication.js";
 import { db } from "./firebaseConfig.js";
-import { doc, onSnapshot } from "firebase/firestore";
 import {
+  doc,
+  onSnapshot,
+  getDoc,
   collection,
   getDocs,
   addDoc,
   serverTimestamp,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 
 // Function to read the quote of the day from Firestore
@@ -94,38 +100,38 @@ function seedHikes() {
       console.error("Error checking hikes collection:", error);
     });
 }
-function displayCardsDynamically() {
-  let cardTemplate = document.getElementById("hikeCardTemplate");
-  const hikesCollectionRef = collection(db, "hikes");
+// function displayCardsDynamically() {
+//   let cardTemplate = document.getElementById("hikeCardTemplate");
+//   const hikesCollectionRef = collection(db, "hikes");
 
-  getDocs(hikesCollectionRef)
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // Clone the template
-        let newcard = cardTemplate.content.cloneNode(true); //cardTemplate.content gives inside of the template. cloneNode(true) make a deep copy
-        const hike = doc.data();
+//   getDocs(hikesCollectionRef)
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         // Clone the template
+//         let newcard = cardTemplate.content.cloneNode(true); //cardTemplate.content gives inside of the template. cloneNode(true) make a deep copy
+//         const hike = doc.data();
 
-        // Populate the card
-        newcard.querySelector(".card-title").textContent = hike.name;
-        newcard.querySelector(".card-text").textContent =
-          hike.details || `Located in ${hike.city}.`;
-        newcard.querySelector(".card-length").textContent = hike.length;
+//         // Populate the card
+//         newcard.querySelector(".card-title").textContent = hike.name;
+//         newcard.querySelector(".card-text").textContent =
+//           hike.details || `Located in ${hike.city}.`;
+//         newcard.querySelector(".card-length").textContent = hike.length;
 
-        newcard.querySelector(".card-image").src = `./images/${hike.code}.jpg`;
+//         newcard.querySelector(".card-image").src = `./images/${hike.code}.jpg`;
 
-        newcard.querySelector(".read-more").href =
-          `eachHike.html?docID=${doc.id}`;
+//         newcard.querySelector(".read-more").href =
+//           `eachHike.html?docID=${doc.id}`;
 
-        // Append to container
-        document.getElementById("hikes-go-here").appendChild(newcard);
-      });
-    })
-    .catch((error) => {
-      console.error("Error getting documents: ", error);
-    });
-}
+//         // Append to container
+//         document.getElementById("hikes-go-here").appendChild(newcard);
+//       });
+//     })
+//     .catch((error) => {
+//       console.error("Error getting documents: ", error);
+//     });
+// }
 
-displayCardsDynamically();
+// displayCardsDynamically();
 
 // Call the seeding function when the main.html page loads.
 seedHikes();

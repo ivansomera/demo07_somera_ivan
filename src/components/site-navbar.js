@@ -51,6 +51,13 @@ class SiteNavbar extends HTMLElement {
   // Also adds a "Profile" link when the user is logged in.
   // This keeps the navbar in sync with the user's authentication status.
   // -------------------------------------------------------------
+  // -------------------------------------------------------------
+  // Renders the authentication controls (login/logout) based on user state
+  // Uses Firebase Auth's onAuthStateChanged to listen for changes
+  // and updates the navbar accordingly.
+  // Also adds a "Profile" link when the user is logged in.
+  // This keeps the navbar in sync with the user's authentication status.
+  // -------------------------------------------------------------
   renderAuthControls() {
     const authControls = this.querySelector("#authControls");
     const navList = this.querySelector("ul"); // your main nav <ul>
