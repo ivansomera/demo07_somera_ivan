@@ -1,1 +1,14 @@
+/* Add CSS styles for the card container with vertical scrolling */
+.card-container {
+  max-height: 350px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
 
+/* Style the individual cards as needed */
+.card {
+  margin: 2%; /* Add margin between cards */
+}
+
+.material-icons {
+  cursor: pointer;
+}
