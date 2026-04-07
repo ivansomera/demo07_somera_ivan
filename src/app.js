@@ -44,8 +44,10 @@ function showName() {
   onAuthReady(async (user) => {
     // If no user is logged in, redirect to the login page
     if (!user) {
-      location.href = "index.html";
-      return; // Stop execution
+      if (window.location.pathname.endsWith("main.html")) {
+        location.href = "index.html";
+      }
+      return;
     }
 
     // Get the user's Firestore document from the "users" collection
@@ -70,8 +72,6 @@ function showName() {
     await displayCardsDynamically(user.uid, bookmarks);
   });
 }
-
-showName();
 
 //---------------------------------------------------------------------------------
 // This function is called when the page loads (from showName())
@@ -219,3 +219,5 @@ function sayHello() {
   // TODO: implement your logic here
 }
 document.addEventListener("DOMContentLoaded", sayHello);
+
+showName();
